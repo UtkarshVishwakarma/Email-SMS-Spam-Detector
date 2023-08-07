@@ -9,6 +9,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import sklearn
+import numpy as np
 
 ps = PorterStemmer()
 
@@ -31,7 +32,7 @@ text = st.text_area("Enter The Message")
 
 if st.button("Predict"):
     message = text_preprocessor(text)
-    vector = vectorizer.transform([message])
+    vector = vectorizer.transform([message]).toarray()
     prediction = model.predict(vector)
 
     if prediction[0] == 0:
